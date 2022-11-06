@@ -97,14 +97,28 @@ SELECT CONCAT(NAME,'(', INITIAL,')') AS NEW_NAME
 FROM NEW_OCCUPATIONS
 ORDER BY NEW_NAME;
 
+--OR
+
+SELECT CONCAT(NAME, '(', LEFT(OCCUPATION,1),')')
+FROM OCCUPATIONS
+ORDER BY NAME;
+
 SELECT CONCAT('There are a total of',' ', COUNT(OCCUPATION),' ',LOWER(OCCUPATION), 's.' ) AS PROFESSION
 FROM OCCUPATIONS
 GROUP BY OCCUPATION
 ORDER BY PROFESSION;
 ```
 
-SOLUTION ONLINE
+ONLINE SOLUTION 
 ```SQL
-SELECT (name || '(' || SUBSTR(occupation,1,1) || ')') FROM occupations ORDER BY name;
-SELECT ('There are a total of ' || COUNT(occupation) || ' ' || LOWER(occupation) || 's' || '.') FROM occupations GROUP BY occupation ORDER BY COUNT(occupation), occupation ASC;
+SELECT (name || '(' || SUBSTR(occupation,1,1) || ')') 
+FROM occupations 
+ORDER BY name;
+
+SELECT ('There are a total of ' || COUNT(occupation) || ' ' || LOWER(occupation) || 's' || '.')
+FROM occupations
+GROUP BY occupation
+ORDER BY COUNT(occupation), occupation ASC;
 ```
+
+
